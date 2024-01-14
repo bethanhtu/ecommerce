@@ -24,6 +24,22 @@
 </head>
 
 <body>
+    @if(\Illuminate\Support\Facades\Session::has('success'))
+    <div class="toast show mt-5">
+        <div class="toast-header">
+            <strong class="mx-auto">{{\Illuminate\Support\Facades\Session::get('success')}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+    @endif
+    @if(\Illuminate\Support\Facades\Session::has('error'))
+    <div class="toast show mt-5">
+        <div class="toast-header">
+            <strong class="mx-auto">{{\Illuminate\Support\Facades\Session::get('error')}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+    @endif
     <section>
         <div class="shadow p-5 rounded w-50 ">
             <h2>Đăng ký</h2>
@@ -36,7 +52,7 @@
                     <input class="form-control" type="email" id="email" placeholder="Email" name="email" required>
                 </div>
                 <div class="form-outline mb-4">
-                    <input class="form-control" type="password" id="password" name="Mật khẩu" placeholder="Password" required>
+                    <input class="form-control" type="password" id="password" name="password" placeholder="Password" required>
                 </div>
                 <div class="form-outline mb-4">
                     <input class="form-control" type="tel" id="phone" name="phone" placeholder="Số điện thoại" required>
@@ -45,12 +61,12 @@
                     <input class="form-control" type="tel" id="" name="" placeholder="Level" value="2" required readonly>
                 </div>
                 <div class="form-outline mb-4">
-                    <input class="form-control btn btn-primary btn-block mb-4" type="submit" value="Đăng ký" id="btn">
+                    <input class="form-control btn btn-secondary btn-block mb-4" type="submit" value="Đăng ký" id="btn">
                 </div>
             </form>
-            <a class="" href="{{route('signin')}}">Đăng nhập !</a>
+            <a class="text-secondary" href="{{route('signin')}}">Đăng nhập !</a>
             <div class="text-center mt-5">
-                <a class="text-center" href="{{route('home')}}">Trang chủ</a>
+                <a class="text-center text-secondary" href="{{route('home')}}">Trang chủ</a>
             </div>
 
         </div>

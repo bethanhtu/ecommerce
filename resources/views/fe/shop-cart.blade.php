@@ -1,5 +1,27 @@
 @extends('fe.layout')
 @section('content_web')
+@if(\Illuminate\Support\Facades\Session::has('success'))
+<div class="toast show">
+    <div class="toast-header">
+        <strong class="me-auto">{{\Illuminate\Support\Facades\Session::get('success')}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+    </div>
+    <div class="toast-body">
+        <a href="{{route('home')}}">Trở về trang chủ</a>
+    </div>
+</div>
+@endif
+@if(\Illuminate\Support\Facades\Session::has('error'))
+<div class="toast show">
+    <div class="toast-header">
+        <strong class="me-auto">{{\Illuminate\Support\Facades\Session::get('error')}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+    </div>
+    <div class="toast-body">
+        <a href="{{route('home')}}">Trở về trang chủ</a>
+    </div>
+</div>
+@endif
 <section class="">
 
     <div class="container h-100">
@@ -39,9 +61,6 @@
                                     </div>
                                     @endforeach
 
-                                    <div class="my-2">
-                                        <h6 class="mb-0"><a href="{{route('home')}}" class="text-body"><i class="fa fa-home me-2"></i>Trở về trang chủ</a></h6>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-4 bg-grey">
@@ -51,6 +70,10 @@
                                         <h5>{{number_format($total)}} đ</h5>
                                     </div>
                                     <a href="{{route('check-out')}}" class="btn-black btn"> Đặt hàng</a>
+
+                                    <div class="mt-5">
+                                        <a href="{{route('home')}}" class="text-body"><i class="fa fa-home me-2"></i>Trở về trang chủ</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

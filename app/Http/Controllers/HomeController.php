@@ -15,7 +15,7 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $categories = Category::all();
+        $categories = Category::take(3)->get();
         $products = Product::orderBy('id', 'DESC')->paginate(12);
         $listNewProduct = Product::orderBy('id', 'DESC')->limit(4)->get();
         $listCoatProduct = $listProducts = Product::where('category_id', 1)

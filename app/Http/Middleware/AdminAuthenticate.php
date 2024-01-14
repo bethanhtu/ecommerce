@@ -20,6 +20,6 @@ class AdminAuthenticate
         if (Auth::check() && Auth::user()->level == 1){
             return $next($request);
         }
-        return redirect()->route('login');
+        return redirect()->route('signin');
     }
 }

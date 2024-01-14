@@ -12,7 +12,6 @@
                     <th>Tình trạng đơn hàng</th>
                     <th>Phương thức thanh toán</th>
                     <th>Ngày đặt hàng</th>
-                    <th>Ghi chú</th>
                     <th>Thao tác</th>
                 </tr>
                 </thead>
@@ -36,7 +35,6 @@
                             <td>Thanh toán qua vnpay</td>
                         @endif
                         <td>{{$item->created_at}}</td>
-                        <td>{{$item->note}}</td>
                         <td>
                             <a  href="{{route('admin.order.detail', ['id'=>$item->id])}}" class="btn btn-link">Chi tiết</a>
                             <button array="{{$item}}" id="{{$item->id}}" class="editstatus btn btn-link">Cập nhật</button>

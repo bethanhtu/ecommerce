@@ -17,7 +17,7 @@
                 <textarea  class="form-control ckeditor" id="editor" name="content"  value="" >{{old('content')}}</textarea>
             </div>
             <div class="footer">
-                <button type="submit"  name="insert" class="btn btn-primary">Thêm</button>
+                <button type="submit"  name="insert" class="btn btn-outline-secondary">Thêm</button>
             </div>
         </form>
     </div>

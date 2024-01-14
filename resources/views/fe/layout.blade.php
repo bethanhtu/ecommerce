@@ -42,7 +42,7 @@
     <!-- NAV -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a href="{{route('home')}}">Toronto</a>
+            <a href="{{route('home')}}"><img height="100" src="{{asset('/web/images/logo2.png')}}" alt=""></a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i> Menu
@@ -54,12 +54,31 @@
                     <li class="nav-item"><a href="{{route('shop')}}">Cửa hàng</a></li>
                     <li class="nav-item"><a href="{{route('blog')}}">Bài viết</a></li>
                     <li class="nav-item"><a href="{{route('contact')}}">Liên hệ</a></li>
+
+                    <li class="nav-item">
+                        <a href="{{route('shop-cart')}}">
+                            <i class="fa fa-shopping-cart"></i>
+                                @if(session('CART'))
+                            <span id="carts">
+
+                                <sup class="badge badge-dark">
+                                    {{count(session('CART'))}}
+                                </sup>
+                            </span>
+
+                                @endif
+                        </a>
+                    </li>
+
+                    
                     <!-- Nav Item - User Information -->
+                    @if(\Illuminate\Support\Facades\Auth::check())
                     <li class="nav-item dropdown no-arrow">
                         <div class="nav-item" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @if(\Illuminate\Support\Facades\Auth::check())
                             <!-- User is logged in, display user's name -->
-                            <p>{{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
+                            <i class="fa fa-user fa-sm"></i>
+                            <span>{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
                             @else
                             <!-- User is not logged in, display the logo -->
                             <i class="fa fa-user"></i>
@@ -85,25 +104,22 @@
                             </a>
                             @else
                             <!-- User is not logged in, display login link -->
-                            <a class="dropdown-item p-2 text-dark" href="{{ route('signin') }}">
-                                <i class="fa fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            <a class="dropdown-item text-dark" href="{{ route('signin') }}">
+                                <i class="fa fa-user fa-sm fa-fw text-gray-400"></i>
                                 Đăng nhập
                             </a>
                             @endauth
                         </div>
                     </li>
-                    <li>
-                        <a href="{{route('shop-cart')}}">
-                            <i class="fa fa-shopping-bag"></i>
-                            <div id="carts">
-                                @if(session('CART'))
-                                <div class="tip" id="bag-carts">
-                                    {{count(session('CART'))}}
-                                </div>
-                                @endif
-                            </div>
+                    @else
+
+                    <li class="nav-item">
+                        <a href="{{ route('signin') }}">
+                            <i class="fa fa-user fa-sm"></i>
                         </a>
                     </li>
+                    @endif
+                    
                 </ul>
             </div>
         </div>
@@ -168,7 +184,7 @@
                             <ul>
                                 <li><span class="icon icon-map-marker"></span><span class="text">809 Giải Phóng, Phường Giáp Bát, Quận Hoàng Mai, TP Hà Nội</span></li>
                                 <li><a href="#"><span class="icon icon-phone"></span><span class="text">+84 667 72 508</span></a></li>
-                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">admin@toronto.com</span></a></li>
+                                <li><a href="{{route('admin.user.list')}}"><span class="icon icon-envelope"></span><span class="text">admin@toronto.com</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -294,10 +310,12 @@
                     id: id,
                 },
                 success: function(response) {
+                    window.location.reload();
                     $("#carts").load(' #bag-carts');
                     $('.notiProduct').slideDown('fast');
                     $('.notiProduct').delay(2000).slideUp('fast');
                 },
+                
             });
         });
     </script>
@@ -308,16 +326,16 @@
             qty += 1;
             let id = $(this).attr('id');
             $.get("{{ route('api.cart.update') }}", {
-                id: id,
-                qty: qty
-            },
-             function(data) {
-                $("#cart").load(' #data-cart');
-                $("#total-price").load(' .total-price');
-                window.location.reload();
-            },
+                    id: id,
+                    qty: qty
+                },
+                function(data) {
+                    $("#cart").load(' #data-cart');
+                    $("#total-price").load(' .total-price');
+                    window.location.reload();
+                },
             );
-            
+
         });
         $(document).on('click', '.dec', function() {
             let qty = new Number($(this).attr('name'));

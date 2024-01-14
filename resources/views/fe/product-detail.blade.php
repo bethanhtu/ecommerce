@@ -5,10 +5,10 @@
     <section class="product-details">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <div class="product__details__pic">
-                        <div class="product__details__slider__content">
-                            <div class="product__details__pic__slider owl-carousel px-2">
+                        <div class="">
+                            <div class="product__details__pic__slider owl-carousel">
                                 <img data-hash="product-1" class="product__big__img" src="{{asset($product->main_image)}}" alt="">
                                 <img data-hash="product-2" class="product__big__img" src="{{asset($product->second_image)}}" alt="">
                             </div>
@@ -24,7 +24,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                     <div class="product__details__text">
                         <h3>{{$product->name}}</h3>
                         <div class="rating d-flex">
@@ -58,28 +58,28 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
-                <div class="col-lg-12">
-                    <div class="related__title">
-                        <h5>SẢN PHẨM TƯƠNG TỰ</h5>
-                    </div>
+            <div class="mt-5">
+                <div class="related__title">
+                    <h5>SẢN PHẨM TƯƠNG TỰ</h5>
                 </div>
+            </div>
+            <div class="row">
                 @foreach($proRelate as $product)
-                <div class="'col-lg-3 col-md-4 col-sm-6 mix pro{{$product->category->id}}cat">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix pro{{$product->category->id}}cat">
                     <div class="product">
                         <a href="#" class="img-prod"><img class="img-fluid" src="{{asset($product->main_image)}}" alt="Colorlib Template">
                             <div class="overlay"></div>
                         </a>
-                        <div class="text px-3">
+                        <div class="text py-3 px-3">
                             <h3><a href="{{route('product',['id'=>$product->id])}}">{{$product->name}}</a></h3>
                             <div class="d-flex">
                                 <div class="pricing">
-                                    <p><span class="mr-2">{{number_format($product->price, 0) }} đ</span></p>
+                                    <p class=""><span class="">{{number_format($product->price, 0) }} đ</span></p>
                                 </div>
                             </div>
-                            <div class="bottom-area d-flex px-3">
-                                <a href="#order" class="order" id="{{$product->id}}" class="add-to-cart text-center px-2 py-2">Thêm vào giỏ hàng <i class="fa fa-shopping-cart"></i></a>
-                            </div>
+                            <p class="bottom-area d-flex px-3">
+                                <a href="#order" id="{{$product->id}}" class="add-to-cart text-center px-2 py-2"><span>Thêm vào giỏ hàng <span class="icon_bag_alt" type="buy"></span></i></span></a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -87,35 +87,5 @@
             </div>
         </div>
     </section>
-    <!-- Product Details Section End -->
-    <div class="modal fade" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Xem nhanh thông tin</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6" id="imgDetail">
-                                <img src="" alt="">
-                            </div>
-                            <div class="col-md-6" style="text-align: center;">
-                                <h3></h3><br>
-                                <div class="proDes"></div>
-                                <h4></h4><br>
-                                <div class="product__details__button">
-                                    <a href="#order" class="cart-btn" id="" style="float: none;"><span class="icon_bag_alt"></span>Thêm giỏ hàng</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 @endsection

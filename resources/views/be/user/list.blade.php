@@ -114,8 +114,8 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                            <button type="submit"  name="insert" class="btn btn-primary">Sửa</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="submit"  name="insert" class="btn btn-outline-secondary">Sửa</button>
                         </div>
                     </form>
                 </div>
